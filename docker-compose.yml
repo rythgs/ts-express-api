@@ -1,0 +1,28 @@
+version: '3'
+
+volumes:
+  dbdata:
+
+services:
+  api:
+    image: backend-api
+    build: .
+    environment:
+      NODE_ENV: production
+      TYPEORM_HOST: db
+      TYPEORM_DATABASE: backendapi_production
+    ports:
+      - 3000:3000
+    links:
+      - db
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=backendapi_production
+    ports:
+      - 3306:3306
+    volumes:
+      - dbdata:/var/lib/mysql
