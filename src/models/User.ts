@@ -27,7 +27,7 @@ export class User extends BaseEntity {
   email: string
 
   @Column({ select: false })
-  private password: string
+  public password: string
 
   @Column({ default: true })
   isActive: boolean
