@@ -9,20 +9,7 @@ import {
 
 describe('Error middleware', () => {
   test('Joiで弾かれたエラーは APIExceptionInvalidParameter として返す', () => {
-    const error: Joi.ValidationError = {
-      name: 'ValidationError',
-      isJoi: true,
-      details: [
-        {
-          message: 'test',
-          path: [1, 2, 3],
-          type: 'dummy',
-        },
-      ],
-      _object: '',
-      annotate: () => '',
-      message: '',
-    }
+    const error = { isJoi: true } as Joi.ValidationError
     const e = convertToException({ error })
     expect(e).toBeInstanceOf(APIExceptionInvalidParameter)
   })
