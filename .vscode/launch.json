@@ -11,7 +11,7 @@
       "port": 9229,
       "address": "localhost",
       "sourceMapPathOverrides": {
-        "/app/*": "${workspaceRoot}/*"
+        "/usr/src/app/*": "${workspaceRoot}/*"
       }
     }
   ]
