@@ -1,8 +1,9 @@
 import bodyParser from 'body-parser'
 import compression from 'compression'
 import cors from 'cors'
-import express from 'express'
+import express, { Request, Response } from 'express'
 import helmet from 'helmet'
+import httpStatus from 'http-status'
 import methodOverride from 'method-override'
 import morgan from 'morgan'
 import passport from 'passport'
@@ -14,7 +15,21 @@ import config from '.'
 
 const app = express()
 
-app.use(morgan(config.logs))
+app.use(
+  morgan(config.logger.logs, {
+    skip: (req: Request, res: Response) =>
+      res.statusCode < httpStatus.BAD_REQUEST,
+    stream: process.stderr,
+  }),
+)
+app.use(
+  morgan(config.logger.logs, {
+    skip: (req: Request, res: Response) =>
+      res.statusCode >= httpStatus.BAD_REQUEST,
+    stream: process.stdout,
+  }),
+)
+
 app.use(helmet())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
