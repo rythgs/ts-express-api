@@ -1,7 +1,7 @@
-import config from './config'
-import database from './config/database'
-import app from './config/express'
-import logger from './utils/logger'
+import config from '~/config'
+import database from '~/config/database'
+import app from '~/config/express'
+import logger from '~/utils/logger'
 
 const server = async () => {
   // connect database

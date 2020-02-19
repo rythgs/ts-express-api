@@ -14,4 +14,7 @@ module.exports = {
   testMatch: ['**/tests/**/?(*.)+(spec|test).[tj]s'],
   collectCoverage: true,
   collectCoverageFrom: ['**/src/**/*.[tj]s', '!**/node_modules/**'],
+  moduleNameMapper: {
+    "^~(.*)$": "<rootDir>/src/$1"
+  }
 }

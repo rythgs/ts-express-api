@@ -10,7 +10,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm'
 
-import config from '../config'
+import config from '~/config'
 
 @Entity()
 export class User extends BaseEntity {

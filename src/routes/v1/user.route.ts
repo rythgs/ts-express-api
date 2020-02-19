@@ -1,7 +1,7 @@
 import express from 'express'
 
-import * as controller from '../../controllers/user.controller'
-import { isLoggedIn } from '../../middlewares/authenticate'
+import * as controller from '~/controllers/user.controller'
+import { isLoggedIn } from '~/middlewares/authenticate'
 
 const router = express.Router()
 

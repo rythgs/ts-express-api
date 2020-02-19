@@ -5,8 +5,8 @@ import {
 } from 'passport-jwt'
 import { Strategy as LocalStrategy } from 'passport-local'
 
-import config from '../config'
-import { User } from '../models/User'
+import config from '~/config'
+import { User } from '~/models/User'
 
 export const jwtStrategy = new JwtStrategy(
   {
