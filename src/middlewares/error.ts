@@ -6,6 +6,7 @@ import {
   APIException,
   APIExceptionInvalidParameter,
 } from '../utils/APIException'
+import logger from '../utils/logger'
 
 import httpStatus = require('http-status')
 
@@ -52,6 +53,8 @@ export const handleErrors = (
   if (config.env !== 'development') {
     delete response.stack
   }
+
+  logger.error(response.message, { url: req.originalUrl })
 
   return res
     .status(response.code)
