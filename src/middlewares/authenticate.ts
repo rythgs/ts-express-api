@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express'
 import passport from 'passport'
 
-import { APIException, APIExceptionForbidden } from '../utils/APIException'
+import { APIException, APIExceptionForbidden } from '~/utils/APIException'
 
 export const authenticateCallback = (
   req: Request,

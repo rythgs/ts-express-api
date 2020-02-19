@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from 'express'
 
-import config from '../config'
-import { messages } from '../constants'
+import config from '~/config'
+import { messages } from '~/constants'
 import {
   APIException,
   APIExceptionInvalidParameter,
-} from '../utils/APIException'
-import logger from '../utils/logger'
+} from '~/utils/APIException'
+import logger from '~/utils/logger'
 
 import httpStatus = require('http-status')
 

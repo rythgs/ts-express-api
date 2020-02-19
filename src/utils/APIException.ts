@@ -1,6 +1,6 @@
 import * as httpStatus from 'http-status'
 
-import { messages } from '../constants'
+import { messages } from '~/constants'
 
 export class APIException extends Error {
   constructor(

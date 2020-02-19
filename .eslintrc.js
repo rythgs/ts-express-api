@@ -39,5 +39,15 @@ module.exports = {
     "import/no-commonjs": 2,
     // import sort
     "simple-import-sort/sort": 2
-  }
+  },
+  settings: {
+    'import/resolver': {
+      alias: {
+        map: [
+          ['~', './src'],
+        ],
+        extensions: ['.ts', 'json', '.d.ts'],
+      },
+    },
+  },
 };

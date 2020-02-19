@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express'
 import * as httpStatus from 'http-status'
 
-import { User } from '../models/User'
-import { APIExceptionNotFound } from '../utils/APIException'
+import { User } from '~/models/User'
+import { APIExceptionNotFound } from '~/utils/APIException'
 
 interface UserRequest extends Request {
   locals?: {
