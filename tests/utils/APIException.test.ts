@@ -1,13 +1,13 @@
 import * as httpStatus from 'http-status'
 
-import { messages } from '../../src/constants'
+import { messages } from '~/constants'
 import {
   APIException,
   APIExceptionForbidden,
   APIExceptionInvalidParameter,
   APIExceptionNotFound,
   APIExceptionUnauthorized,
-} from '../../src/utils/APIException'
+} from '~/utils/APIException'
 
 describe('APIException:', () => {
   let error: any

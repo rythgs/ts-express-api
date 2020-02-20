@@ -11,6 +11,7 @@ import passport from 'passport'
 import { jwtStrategy, localStrategy } from '~/config/passport'
 import { handleErrors } from '~/middlewares/error'
 import routes from '~/routes/v1'
+
 import config from '.'
 
 const app = express()

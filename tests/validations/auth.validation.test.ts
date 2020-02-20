@@ -1,4 +1,4 @@
-import validation from '../../src/validations/auth.validation'
+import validation from '~/validations/auth.validation'
 
 describe('auth.validation', () => {
   test('has login validation defs', () => {

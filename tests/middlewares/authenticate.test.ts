@@ -1,10 +1,7 @@
 import { Request, Response } from 'express'
 
-import { authenticateCallback } from '../../src/middlewares/authenticate'
-import {
-  APIException,
-  APIExceptionForbidden,
-} from '../../src/utils/APIException'
+import { authenticateCallback } from '~/middlewares/authenticate'
+import { APIException, APIExceptionForbidden } from '~/utils/APIException'
 
 describe('Authenticate Middleware:', () => {
   test('passport で予期せぬエラーが発生したパターン', () => {

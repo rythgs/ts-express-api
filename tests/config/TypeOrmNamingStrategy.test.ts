@@ -1,4 +1,4 @@
-import TypeOrmNamingStrategy from '../../src/config/TypeOrmNamingStrategy'
+import TypeOrmNamingStrategy from '~/config/TypeOrmNamingStrategy'
 
 test('TypeOrmNamingStrategy', () => {
   const strategy = new TypeOrmNamingStrategy()
