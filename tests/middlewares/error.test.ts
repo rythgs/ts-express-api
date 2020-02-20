@@ -1,11 +1,11 @@
 import Joi from '@hapi/joi'
 
-import { convertToException } from '../../src/middlewares/error'
+import { convertToException } from '~/middlewares/error'
 import {
   APIException,
   APIExceptionForbidden,
   APIExceptionInvalidParameter,
-} from '../../src/utils/APIException'
+} from '~/utils/APIException'
 
 describe('Error middleware', () => {
   test('Joiで弾かれたエラーは APIExceptionInvalidParameter として返す', () => {

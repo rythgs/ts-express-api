@@ -1,8 +1,8 @@
 import supertest from 'supertest'
 
-import database, { closeDatabaseConn } from '../../src/config/database'
-import app from '../../src/config/express'
-import { User } from '../../src/models'
+import database, { closeDatabaseConn } from '~/config/database'
+import app from '~/config/express'
+import { User } from '~/models'
 
 const request = supertest(app)
 
