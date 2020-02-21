@@ -14,7 +14,7 @@ describe('Auth API:', () => {
     const user = new User()
     user.firstName = 'test'
     user.lastName = 'test'
-    user.email = 'test@example.com'
+    user.email = 'authtest@example.com'
     user.password = 'test'
 
     await user.save()
@@ -28,7 +28,7 @@ describe('Auth API:', () => {
     test('入力が不正であれば 403 が返ること（password未入力）', async () => {
       await request
         .post('/rest/v1/auth/login')
-        .send({ email: 'text@example.com' })
+        .send({ email: 'authtest@example.com', password: '' })
         .expect('Content-Type', /json/)
         .expect(400)
     })
@@ -36,7 +36,7 @@ describe('Auth API:', () => {
     test('入力が不正であれば 403 が返ること（email未入力）', async () => {
       await request
         .post('/rest/v1/auth/login')
-        .send({ password: 'test' })
+        .send({ email: '', password: 'test' })
         .expect('Content-Type', /json/)
         .expect(400)
     })
@@ -44,7 +44,7 @@ describe('Auth API:', () => {
     test('ログインできること', async () => {
       const res = await request
         .post('/rest/v1/auth/login')
-        .send({ email: 'test@example.com', password: 'test' })
+        .send({ email: 'authtest@example.com', password: 'test' })
         .expect('Content-Type', /json/)
         .expect(200)
 
