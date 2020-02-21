@@ -6,7 +6,7 @@ import {
 import { Strategy as LocalStrategy } from 'passport-local'
 
 import config from '~/config'
-import { User } from '~/models/User'
+import { User } from '~/models'
 
 export const jwtStrategy = new JwtStrategy(
   {

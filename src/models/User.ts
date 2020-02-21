@@ -13,7 +13,7 @@ import {
 import config from '~/config'
 
 @Entity()
-export class User extends BaseEntity {
+class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number
 
