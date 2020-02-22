@@ -1,8 +1,8 @@
 import express from 'express'
 
 import authRoute from './auth.route'
-import userRoute from './user.route'
 import swaggerRoute from './swagger.route'
+import userRoute from './user.route'
 
 const router = express.Router()
 
