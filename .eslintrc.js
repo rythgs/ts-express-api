@@ -28,7 +28,7 @@ module.exports = {
     ],
     // common
     "prefer-const": 2,
-    "no-unused-vars": 2,
+    "no-unused-vars": 0,
     "no-multiple-empty-lines": [2, { max: 1 }],
     // import
     "import/newline-after-import": 2,
@@ -46,7 +46,7 @@ module.exports = {
         map: [
           ['~', './src'],
         ],
-        extensions: ['.ts', 'json', '.d.ts'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', 'json', '.d.ts'],
       },
     },
   },
