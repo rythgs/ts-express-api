@@ -1,16 +1,10 @@
 import dotenvSafe from 'dotenv-safe'
-import fs from 'fs'
-import { join } from 'path'
+import path from 'path'
 
 dotenvSafe.config({
-  allowEmptyValues: true,
-  path: join(__dirname, '../../.env'),
+  path: path.join(__dirname, '../../.env'),
+  sample: path.join(__dirname, '../../.env.example'),
 })
-
-const privateKey: string = fs.readFileSync(
-  __dirname + '/../assets/keys/private.key',
-  { encoding: 'utf8' },
-)
 
 interface Config {
   readonly env: string
@@ -35,7 +29,7 @@ interface Config {
 const config: Config = {
   env: process.env.NODE_ENV ?? 'development',
   port: parseInt(process.env.PORT ?? '3000', 10) || 3000,
-  jwtSecret: privateKey ?? '',
+  jwtSecret: process.env.JWT_SECRET || '',
   jwtExpirationInterval: '15m',
   db: {
     host: process.env.TYPEORM_HOST || 'localhost',
