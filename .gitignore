@@ -82,8 +82,5 @@ typings/
 # build files
 dist/
 
-# keys
-src/assets/keys/*
-
 # macOS
 .DS_Store

@@ -8,9 +8,9 @@ services:
     image: backend-api
     build: .
     environment:
-      NODE_ENV: production
       TYPEORM_HOST: db
-      TYPEORM_DATABASE: backendapi_production
+    volumes:
+      - .:/app
     ports:
       - 3000:3000
     links:
@@ -22,7 +22,6 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=backendapi_production
     ports:
       - 3306:3306
     volumes:
