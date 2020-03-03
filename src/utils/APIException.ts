@@ -1,4 +1,4 @@
-import * as httpStatus from 'http-status'
+import httpStatus from 'http-status'
 
 import { messages } from '~/constants'
 
@@ -47,5 +47,11 @@ export class APIExceptionForbidden extends APIException {
 export class APIExceptionNotFound extends APIException {
   constructor(message?: string, errors?: any) {
     super(message || messages.EXCEPTION_NOT_FOUND, errors, httpStatus.NOT_FOUND)
+  }
+}
+
+export class APIExceptionConflict extends APIException {
+  constructor(message?: string, errors?: any) {
+    super(message || messages.EXCEPTION_CONFLICT, errors, httpStatus.CONFLICT)
   }
 }
