@@ -1,6 +1,6 @@
 export default {
   EXCEPTION_INTERNAL_SERVER_ERROR: 'エラーが発生しました。',
-  EXCEPTION_INVALID_PARAMETER: 'リクエストの中に無効のパラメータがあります。',
+  EXCEPTION_INVALID_PARAMETER: 'リクエストの中に無効なパラメータがあります。',
   EXCEPTION_NOT_FOUND: 'リクエストしたリソースが見つかりません。',
   EXCEPTION_NEED_LOGIN: 'この操作を行うため、ログインする必要があります。',
   EXCEPTION_NOT_AUTHORIZED:
@@ -8,5 +8,6 @@ export default {
   EXCEPTION_INVALID_TOKEN: '認証トークンが無効です。',
   EXCEPTION_INVALID_REFRESH_TOKEN: 'リフレッシュトークンが無効です。',
   EXCEPTION_REQUEST_FAILURE: 'リクエストを完了できませんでした。',
+  EXCEPTION_CONFLICT: 'この値のリソースはすでに存在します',
   ERR_LOGIN: 'ユーザー名もしくはパスワードが正しくありません。',
 }
