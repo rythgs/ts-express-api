@@ -79,8 +79,5 @@ export const handleErrors = (
     stack,
   })
 
-  return res
-    .status(response.code)
-    .json(response)
-    .end()
+  return res.status(response.code).json(response).end()
 }
