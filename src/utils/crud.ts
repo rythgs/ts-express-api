@@ -18,7 +18,7 @@ export const parseSort = (sort: string) => {
 export const parseFilter = (filter: string) => {
   const filters = JSON.parse(filter)
   return Object.keys(filters)
-    .map(key => {
+    .map((key) => {
       if (
         typeof filters[key] === 'string' &&
         filters[key].indexOf('%') !== -1

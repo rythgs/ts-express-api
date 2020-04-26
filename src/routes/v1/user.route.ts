@@ -10,11 +10,7 @@ const router = express.Router()
 
 router.param('id', retrieve(User))
 
-router
-  .route('/')
-  .all(isLoggedIn())
-  .get(list(User))
-  .post(create(User))
+router.route('/').all(isLoggedIn()).get(list(User)).post(create(User))
 
 router
   .route('/:id')
