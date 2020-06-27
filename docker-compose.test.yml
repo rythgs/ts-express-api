@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  api:
+    environment:
+      NODE_ENV: test
+      TYPEORM_DATABASE: backendapi_test
+    command: npm run test

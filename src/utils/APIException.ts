@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import httpStatus from 'http-status'
 
 import { messages } from '~/constants'

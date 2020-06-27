@@ -3,10 +3,10 @@ import TypeOrmNamingStrategy from '~/config/TypeOrmNamingStrategy'
 test('TypeOrmNamingStrategy', () => {
   const strategy = new TypeOrmNamingStrategy()
   // tableName
-  expect(strategy.tableName('TestTable', null)).toBe('test_tables')
+  expect(strategy.tableName('TestTable', undefined)).toBe('test_tables')
   expect(strategy.tableName('TestTable', 'custom_tables')).toBe('custom_tables')
   // columnName
-  expect(strategy.columnName('lastName', null, [])).toBe('last_name')
+  expect(strategy.columnName('lastName', '', [])).toBe('last_name')
   expect(strategy.columnName('lastName', 'last_name_a', [])).toBe('last_name_a')
   // relationName
   expect(strategy.relationName('TestTable')).toBe('test_table')
@@ -17,10 +17,10 @@ test('TypeOrmNamingStrategy', () => {
     'first_table__second_table',
   )
   // joinTableColumnName
-  expect(strategy.joinTableColumnName('Users', null, 'lastName')).toBe(
+  expect(strategy.joinTableColumnName('Users', '', 'lastName')).toBe(
     'user_last_name',
   )
-  expect(strategy.joinTableColumnName('Users', 'lastName', null)).toBe(
+  expect(strategy.joinTableColumnName('Users', 'lastName', undefined)).toBe(
     'user_last_name',
   )
   // classTableInheritanceParentColumnName

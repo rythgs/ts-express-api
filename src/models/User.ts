@@ -38,7 +38,7 @@ class User extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: Date
 
-  token() {
+  token(): string {
     return jwt.sign({ sub: this.id }, config.jwtSecret, {
       expiresIn: config.jwtExpirationInterval,
     })
@@ -49,7 +49,7 @@ class User extends BaseEntity {
   }
 
   @BeforeInsert()
-  async hashPassword() {
+  async hashPassword(): Promise<void> {
     const rounds = config.env === 'development' ? 1 : 10
     this.password = await bcrypt.hash(this.password, rounds)
   }
