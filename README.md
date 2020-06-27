@@ -11,9 +11,29 @@ Rest API
   - MariaDB
 - Docker
 - Jest
+- swagger-jsdoc
 
 ```
 npm install
 cp .env.example .env
-docker-compose -f "docker-compose.dev.yml" up -d --build 
+```
+
+### Start App
+
+```
+npm run docker:start
+```
+
+```
+npm run start
+```
+
+### Test
+
+```
+npm run docker:test
+```
+
+```
+npm run test
 ```
