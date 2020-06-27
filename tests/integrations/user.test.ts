@@ -19,8 +19,8 @@ describe('User API:', () => {
     user.lastName = 'test'
     user.email = email
     user.password = 'test'
-
     await user.save()
+
     const res = await request
       .post('/rest/v1/auth/login')
       .send({ email, password: 'test' })
@@ -40,7 +40,9 @@ describe('User API:', () => {
         .expect('Content-Type', /json/)
         .expect(200)
 
-      expect(res.body.length).toBeGreaterThan(0)
+      expect(res.body).toHaveProperty('data')
+      expect(res.body).toHaveProperty('total')
+      expect(res.body.data.length).toBeGreaterThan(0)
     })
   })
 })

@@ -22,7 +22,7 @@ export const retrieve = async (
   res: Response,
   next: NextFunction,
   id: string,
-) => {
+): Promise<void> => {
   const user = await User.findOne(id)
   if (!user) {
     throw new APIExceptionNotFound()
@@ -36,7 +36,7 @@ export const retrieve = async (
  * @param req
  * @param res
  */
-export const get = (req: UserRequest, res: Response) =>
+export const get = (req: UserRequest, res: Response): Response<any> =>
   res.status(httpStatus.OK).json(req['locals']?.user)
 
 /**
@@ -44,7 +44,7 @@ export const get = (req: UserRequest, res: Response) =>
  * @param req
  * @param res
  */
-export const list = async (req: Request, res: Response) => {
+export const list = async (req: Request, res: Response): Promise<Response> => {
   const users = await User.find()
   return res.status(httpStatus.OK).json(users)
 }
@@ -54,8 +54,12 @@ export const list = async (req: Request, res: Response) => {
  * @param req
  * @param res
  */
-export const create = async (req: Request, res: Response) => {
-  const user = User.create(req.body)
+export const create = async (
+  req: Request,
+  res: Response,
+): Promise<Response> => {
+  // @see https://github.com/typeorm/typeorm/issues/1583
+  const user = User.create({ ...req.body } as User)
   const u = await user.save()
   return res.status(httpStatus.CREATED).json(u)
 }
@@ -65,7 +69,10 @@ export const create = async (req: Request, res: Response) => {
  * @param req
  * @param res
  */
-export const update = async (req: UserRequest, res: Response) => {
+export const update = async (
+  req: UserRequest,
+  res: Response,
+): Promise<Response> => {
   const user = req['locals']?.user
   if (user) {
     User.merge(user, req.body)
@@ -79,7 +86,10 @@ export const update = async (req: UserRequest, res: Response) => {
  * @param req
  * @param res
  */
-export const remove = async (req: UserRequest, res: Response) => {
+export const remove = async (
+  req: UserRequest,
+  res: Response,
+): Promise<void> => {
   const user = req['locals']?.user
   if (user) {
     await User.remove(user)

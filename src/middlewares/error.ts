@@ -15,7 +15,7 @@ import httpStatus = require('http-status')
 interface ErrorResponse {
   code: number
   message: string
-  errors?: object
+  errors?: any
   stack?: string
 }
 
@@ -31,6 +31,7 @@ const handleTypeOrmErrors = (err: TypeOrmError) => {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const convertToException = (err: any): APIException => {
   if (queryFailedGuard(err)) {
     return handleTypeOrmErrors(err)
@@ -48,12 +49,13 @@ export const convertToException = (err: any): APIException => {
 }
 
 export const handleErrors = (
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   err: any,
   req: Request,
   res: Response,
-  // eslint-disable-next-line no-unused-vars
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction,
-) => {
+): void => {
   let response: ErrorResponse = {
     code: httpStatus.INTERNAL_SERVER_ERROR,
     message: messages.EXCEPTION_INTERNAL_SERVER_ERROR,

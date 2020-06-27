@@ -10,12 +10,12 @@ type RetrieveRequest = Request & {
   }
 }
 
-export const parseSort = (sort: string) => {
+export const parseSort = (sort: string): { [key: string]: string } => {
   const [field, direction] = JSON.parse(sort)
   return { [field]: direction }
 }
 
-export const parseFilter = (filter: string) => {
+export const parseFilter = (filter: string): { [key: string]: any } => {
   const filters = JSON.parse(filter)
   return Object.keys(filters)
     .map((key) => {
@@ -52,7 +52,7 @@ export const retrieve = <T extends BaseEntity>(
   res: Response,
   next: NextFunction,
   id: string,
-) => {
+): Promise<void> => {
   try {
     const data = await Model.findOne(id)
     if (!data) {
@@ -71,7 +71,8 @@ export const retrieve = <T extends BaseEntity>(
 export const get = <T extends BaseEntity>() => async (
   req: RetrieveRequest,
   res: Response,
-) => res.status(httpStatus.OK).json({ data: req.locals?.data })
+): Promise<Response> =>
+  res.status(httpStatus.OK).json({ data: req.locals?.data })
 
 /**
  * 一覧を取得
@@ -80,16 +81,15 @@ export const get = <T extends BaseEntity>() => async (
  */
 export const list = <T extends BaseEntity>(
   Model: { new (): T } & typeof BaseEntity,
-) => async (req: Request, res: Response, next: NextFunction) => {
+) => async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    console.log(req.query)
     const { range, sort, filter } = req.query
-    const [from, to] = range ? JSON.parse(range) : [0, 100]
+    const [from, to] = range ? JSON.parse(range as string) : [0, 100]
     const [data, total] = await Model.findAndCount({
       skip: from,
       take: to - from + 1,
-      where: filter ? parseFilter(filter) : {},
-      order: sort ? parseSort(sort) : {},
+      where: filter ? parseFilter(filter as string) : {},
+      order: sort ? parseSort(sort as string) : {},
     })
     res.status(httpStatus.OK).json({ data, total })
   } catch (e) {
@@ -104,9 +104,10 @@ export const list = <T extends BaseEntity>(
  */
 export const create = <T extends BaseEntity>(
   Model: { new (): T } & typeof BaseEntity,
-) => async (req: Request, res: Response, next: NextFunction) => {
+) => async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const model = Model.create(req.body)
+    // @see https://github.com/typeorm/typeorm/issues/1583
+    const model = Model.create({ ...req.body } as T)
     const data = await model.save()
     res.status(httpStatus.CREATED).json({ data })
   } catch (e) {
@@ -121,7 +122,11 @@ export const create = <T extends BaseEntity>(
  */
 export const update = <T extends BaseEntity>(
   Model: { new (): T } & typeof BaseEntity,
-) => async (req: RetrieveRequest, res: Response, next: NextFunction) => {
+) => async (
+  req: RetrieveRequest,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const data = req.locals?.data
     if (data) {
@@ -141,7 +146,11 @@ export const update = <T extends BaseEntity>(
  */
 export const remove = <T extends BaseEntity>(
   Model: { new (): T } & typeof BaseEntity,
-) => async (req: RetrieveRequest, res: Response, next: NextFunction) => {
+) => async (
+  req: RetrieveRequest,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const data = req.locals?.data
     if (data) {

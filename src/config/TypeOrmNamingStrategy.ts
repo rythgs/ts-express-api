@@ -3,32 +3,40 @@ import { DefaultNamingStrategy } from 'typeorm'
 import { snakeCase } from 'typeorm/util/StringUtils'
 
 export default class TypeOrmNamingStrategy extends DefaultNamingStrategy {
-  tableName(className: string, customName: any) {
+  tableName(className: string, customName: string | undefined): string {
     return customName || pluralize(snakeCase(className))
   }
 
-  columnName(propertyName: string, customName: any, embeddedPrefixes: any[]) {
+  columnName(
+    propertyName: string,
+    customName: string,
+    embeddedPrefixes: string[],
+  ): string {
     return (
       snakeCase(embeddedPrefixes.join('_')) +
       (customName || snakeCase(propertyName))
     )
   }
 
-  relationName(propertyName: string) {
+  relationName(propertyName: string): string {
     return snakeCase(propertyName)
   }
 
-  joinColumnName(relationName: string, referencedColumnName: string) {
+  joinColumnName(relationName: string, referencedColumnName: string): string {
     return snakeCase(
       pluralize.singular(relationName) + '_' + referencedColumnName,
     )
   }
 
-  joinTableName(firstTableName: string, secondTableName: string) {
+  joinTableName(firstTableName: string, secondTableName: string): string {
     return snakeCase(firstTableName + '_' + secondTableName)
   }
 
-  joinTableColumnName(tableName: string, propertyName: any, columnName: any) {
+  joinTableColumnName(
+    tableName: string,
+    propertyName: string,
+    columnName?: string,
+  ): string {
     return snakeCase(
       pluralize.singular(tableName) + '_' + (columnName || propertyName),
     )
@@ -37,7 +45,7 @@ export default class TypeOrmNamingStrategy extends DefaultNamingStrategy {
   classTableInheritanceParentColumnName(
     parentTableName: string,
     parentTableIdPropertyName: string,
-  ) {
+  ): string {
     return snakeCase(
       pluralize.singular(parentTableName) + '_' + parentTableIdPropertyName,
     )

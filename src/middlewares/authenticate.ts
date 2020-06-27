@@ -1,13 +1,15 @@
 import { NextFunction, Request, Response } from 'express'
 import passport from 'passport'
 
+import { User } from '~/models'
 import { APIException, APIExceptionForbidden } from '~/utils/APIException'
 
 export const authenticateCallback = (
   req: Request,
   res: Response,
   next: NextFunction,
-) => (err: any, user: any) => {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+) => (err: any, user?: User): void => {
   if (err) {
     return next(new APIException(err.message, err))
   }
@@ -27,7 +29,7 @@ export const isAuthenticated = () => (
   req: Request,
   res: Response,
   next: NextFunction,
-) =>
+): any =>
   passport.authenticate(
     'local',
     { session: false },
@@ -41,7 +43,7 @@ export const isLoggedIn = () => (
   req: Request,
   res: Response,
   next: NextFunction,
-) =>
+): any =>
   passport.authenticate(
     'jwt',
     { session: false },
