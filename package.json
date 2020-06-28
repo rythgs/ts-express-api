@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon",
-    "build": "tsc --build",
+    "build": "tsc --build tsconfig.build.json",
     "lint": "eslint --fix 'src/**/*.ts' 'tests/**/*.ts'",
     "test": "cross-env NODE_ENV=test jest",
     "test:coverage": "cross-env NODE_ENV=test jest --coverage",
