@@ -1,4 +1,4 @@
-# ts-express-api
+# TypeScript Express Rest API
 
 Rest API
 
